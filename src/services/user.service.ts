@@ -1,7 +1,7 @@
 import { BadRequestError, ConflictError } from '../exceptions/HttpErrors'
 import { isEmpty } from '../utils/util'
-import DB from '../db/models'
 import { IUser } from '../interfaces/User'
+import DB from '../db/models'
 
 const User = DB.User
 

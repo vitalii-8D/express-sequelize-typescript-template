@@ -1,5 +1,6 @@
-import { validationResult } from 'express-validator'
 import { Request, Response, NextFunction } from 'express'
+import { validationResult } from 'express-validator'
+
 import { BadRequestError } from '../exceptions/HttpErrors'
 
 const validationMiddleware = (req: Request, res: Response, next: NextFunction) => {
