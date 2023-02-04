@@ -1,0 +1,9 @@
+node_modules
+.env
+package-lock.json
+.idea
+docker-compose.yml
+.nyc_output
+.vscode/settings.json
+.docker/volumes
+dist
