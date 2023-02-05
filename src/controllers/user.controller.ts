@@ -4,14 +4,11 @@ import { StatusCodes } from 'http-status-codes'
 import { UserService } from '../services'
 import { IUser } from '../interfaces/User'
 
-import Cache from '../redis/cache'
-
 const { OK, CREATED } = StatusCodes
 
 export const getUsers = async function (req: Request, res: Response, next: NextFunction) {
   try {
-    // const findAllUsersData: IUser[] = await UserService.findAllUsers()
-    const findAllUsersData: IUser[] = await Cache.get(req.originalUrl, UserService.findAllUsers)
+    const findAllUsersData: IUser[] = await UserService.findAllUsers()
 
     res.status(OK).json(findAllUsersData)
   } catch (error) {

@@ -10,6 +10,14 @@ import ApiRouter from './routes'
 import errorMiddleware from './middlewares/error.middleware'
 import { loggerConfig } from './config/logger'
 
+declare global {
+  namespace Express {
+    export interface Response {
+      originalJson: (data: object) => any
+    }
+  }
+}
+
 const app: Express = express()
 
 app.use(express.urlencoded({ extended: true }))
