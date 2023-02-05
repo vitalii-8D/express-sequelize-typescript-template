@@ -11,6 +11,6 @@ router.get('/', cachingMiddleware, UserController.getUsers)
 router.get('/:id', idParamValidator, validationMiddleware, UserController.getUserById)
 router.post('/', ...createUserValidators, validationMiddleware, UserController.createUser)
 router.put('/:id', idParamValidator, ...updateUserValidators, validationMiddleware, UserController.updateUser)
-router.use('/:id', idParamValidator, validationMiddleware, UserController.deleteUser)
+router.delete('/:id', idParamValidator, validationMiddleware, UserController.deleteUser)
 
 export default router

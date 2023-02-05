@@ -8,6 +8,8 @@ import {
   Sequelize,
 } from 'sequelize'
 
+import Cache from '../../redis/cache'
+
 import { Gender, IUser, UserStatus } from '../../interfaces/User'
 
 // @ts-ignore
@@ -62,6 +64,13 @@ export default function (sequelize: Sequelize): typeof UserModel {
       tableName: 'Users',
     },
   )
+
+  UserModel.beforeSave(async () => {
+    Cache.invalidateByPattern('*users*')
+  })
+  UserModel.beforeDestroy(async () => {
+    Cache.invalidateByPattern('*users*')
+  })
 
   return UserModel
 }

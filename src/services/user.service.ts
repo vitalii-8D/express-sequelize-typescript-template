@@ -35,7 +35,7 @@ const updateUser = async function (userId: number, userData: Partial<IUser>): Pr
   const user: IUser | null = await User.findByPk(userId)
   if (!user) throw new ConflictError("User doesn't exist")
 
-  await User.update(userData, { where: { id: userId } })
+  await User.update(userData, { where: { id: userId }, individualHooks: true })
 
   // @ts-ignore
   const updatedUser: IUser = await User.findByPk(userId)
@@ -48,7 +48,7 @@ const deleteUser = async function (userId: number): Promise<IUser> {
   const user: IUser | null = await User.findByPk(userId)
   if (!user) throw new ConflictError("User doesn't exist")
 
-  await User.destroy({ where: { id: userId } })
+  await User.destroy({ where: { id: userId }, individualHooks: true })
 
   return user
 }
