@@ -9,7 +9,7 @@ const timestamp = {
 }
 
 const getRandomUser = () => ({
-  id: faker.datatype.number({ max: 50000 }),
+  // id: faker.datatype.number({ max: 100000 }),
   name: faker.name.firstName() + ' ' + faker.name.lastName(),
   email: faker.internet.email(),
   gender: faker.helpers.arrayElement([Gender.MALE, Gender.FEMALE]),
@@ -19,8 +19,9 @@ const getRandomUser = () => ({
 
 const demoUsers: IUser[] = []
 
-for (let i = 0; i <= 200; i++) {
-  demoUsers.push(getRandomUser())
+for (let i = 0; i <= 500; i++) {
+  const user = { id: i + 1, ...getRandomUser() }
+  demoUsers.push(user)
 }
 
 module.exports = {
