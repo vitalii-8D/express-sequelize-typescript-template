@@ -2,7 +2,6 @@ import { Router } from 'express'
 
 import { UserController } from '../controllers'
 import validationMiddleware from '../middlewares/validation.middleware'
-// import cachingMiddleware from '../middlewares/cache.middleware'
 import { createUserValidators, idParamValidator, updateUserValidators } from '../validators/user.validators'
 
 const router = Router()
