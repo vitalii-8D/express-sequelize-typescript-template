@@ -13,7 +13,7 @@ import Cache from '../../redis/cache'
 import { Gender, IUser, UserStatus } from '../../interfaces/User'
 
 // @ts-ignore
-export class UserModel extends Model<InferAttributes<IUser>, InferCreationAttributes<IUser>> implements User {
+export class UserModel extends Model<InferAttributes<IUser>, InferCreationAttributes<IUser>> {
   declare id: CreationOptional<number>
   declare name: string
   declare email: string
@@ -66,10 +66,10 @@ export default function (sequelize: Sequelize): typeof UserModel {
   )
 
   UserModel.beforeSave(async () => {
-    Cache.invalidateByPattern('*users*')
+    Cache.invalidateByPattern('*/api/users*')
   })
   UserModel.beforeDestroy(async () => {
-    Cache.invalidateByPattern('*users*')
+    Cache.invalidateByPattern('*/api/users*')
   })
 
   return UserModel
